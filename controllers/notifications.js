@@ -1,34 +1,44 @@
-const { Notification } = require("../models");
+const { json } = require("sequelize");
+const { Notification, AddToken } = require("../models");
 const axios = require("axios");
-
+let tokens = [];
+let index = 0;
 exports.createNotifications = async (req, res) => {
-  axios
-    .post(
-      "https://fcm.googleapis.com/fcm/send",
-      {
-        registration_ids: [
-          "cdIgzGb8SjmP-iuKqQ-JZn:APA91bFtVZNJJwksEILuIJ__JunhBL5mII2pGwomFatIbRwO2MrAuFkyuI5Y65_2X4E09z2CPEcAnEIJ0XLOC45gdUT6pAOhawfaY4GljgXr9ZHT5sIhtzQit1X1F52JILFiFEihnjgh",
-          "cXZrrgbdQCCg9NZv5LZz5P:APA91bFDItKj6-0IiIjMpvfBKfLnGyxGdevoJXnc1hJQvU9oEVt0ZmP2nxA7jCzgMVt2M0rD6p2gEZa-yqsGTehXjMUrYwg0WJHkuD0opJh8mJpuxQuudO4DKpUPLKxicd8KnAI4k7T6",
-        ],
-        notification: req.body,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "key=AAAAswNUAlE:APA91bGTEVPqMno2m8GkEa82r5dpz9PKmdJHHXrAaOOhXvsJfQi_8RAKzwaOzPlBkB_Ifjvu1mFmfHO-FMbYrsCXGWyuy4Ds8fIq0G4FUKLLAxBD2TpNJVCrsCa2eRtC2dE969Rc0N1t",
-        },
-      }
-    )
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
+  await AddToken.findAll({
+    attributes: ["content"],
+  }).then((data) => {
+    // console.log([data[0].dataValues.content]);
+    data.forEach((element) => {
+      tokens[index] = element.dataValues.content;
+      index++;
     });
+  });
+  //   console.log(tokens);
   let { title, type, body } = req.body;
   let error;
-  if (!title && !type && !body) error = "you must fill all fields";
+  if (!title || !type || !body) error = "you must fill all fields";
+  console.log(title && type && body);
+  if (!error && tokens) {
+    axios
+      .post(
+        "https://fcm.googleapis.com/fcm/send",
+        {
+          registration_ids: tokens,
+          notification: req.body,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "key=AAAAswNUAlE:APA91bGTEVPqMno2m8GkEa82r5dpz9PKmdJHHXrAaOOhXvsJfQi_8RAKzwaOzPlBkB_Ifjvu1mFmfHO-FMbYrsCXGWyuy4Ds8fIq0G4FUKLLAxBD2TpNJVCrsCa2eRtC2dE969Rc0N1t",
+          },
+        }
+      )
+      .then(function (response) {})
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   if (!error) {
     let data = await Notification.create({
       title,
