@@ -23,7 +23,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     return Promise.all([
-      queryInterface.removeColumn("tokens", "content"),
+      queryInterface.removeColumn("tokens", "token"),
       queryInterface.removeColumn("tokens", "user_id"),
       queryInterface.removeColumn("tokens", "id"),
     ]);

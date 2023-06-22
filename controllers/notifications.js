@@ -5,11 +5,11 @@ let tokens = [];
 let index = 0;
 exports.createNotifications = async (req, res) => {
   await AddToken.findAll({
-    attributes: ["content"],
+    attributes: ["token"],
   }).then((data) => {
     // console.log([data[0].dataValues.content]);
     data.forEach((element) => {
-      tokens[index] = element.dataValues.content;
+      tokens[index] = element.dataValues.token;
       index++;
     });
   });
