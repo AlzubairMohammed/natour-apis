@@ -12,7 +12,11 @@ addToken.init(
       autoIncrement: true,
       allowNull: false,
     },
-    content: {
+    token: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    user_id: {
       type: Sequelize.STRING,
       allowNull: false,
     },

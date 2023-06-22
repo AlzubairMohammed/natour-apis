@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     return Promise.all([
-      queryInterface.addColumn("tokens", "content", {
+      queryInterface.addColumn("tokens", "token", {
         type: Sequelize.STRING,
         allowNull: true,
       }),
@@ -14,12 +14,17 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       }),
+      queryInterface.addColumn("tokens", "user_id", {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      }),
     ]);
   },
 
   async down(queryInterface, Sequelize) {
     return Promise.all([
       queryInterface.removeColumn("tokens", "content"),
+      queryInterface.removeColumn("tokens", "user_id"),
       queryInterface.removeColumn("tokens", "id"),
     ]);
   },
