@@ -24,7 +24,7 @@ exports.createNotifications = async (req, res) => {
         "https://fcm.googleapis.com/fcm/send",
         {
           registration_ids: tokens,
-          notification: { title, body: { body, type } },
+          data: req.body,
         },
         {
           headers: {
