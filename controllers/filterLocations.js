@@ -1,15 +1,11 @@
 const { QueryTypes } = require("sequelize");
-const Sequelize = require("sequelize");
-// const sequelize = new Sequelize("hultia_core", "root", "noPass123", {
-//   host: "localhost",
-//   dialect: "mysql",
-// });
-
 const sequelize = require("../config/env");
 
 exports.filterLocations = async (req, res) => {
   console.log(req.body);
   const { lat, lng, distance } = req.body;
+  if (!lat || !lng || !distance)
+    res.status(404).json("you must to fill all fields ..!");
   const locations = await sequelize.query(
     `SELECT * , SQRT(
     POW(69.1 * (lat - ${lat}), 2) +
