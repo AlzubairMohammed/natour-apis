@@ -5,7 +5,7 @@ exports.filterLocations = async (req, res) => {
   console.log(req.body);
   const { lat, lng, distance } = req.body;
   if (!lat || !lng || !distance)
-    res.status(404).json("you must to fill all fields ..!");
+    return res.status(404).json("you must to fill all fields ..!");
   const locations = await sequelize.query(
     `SELECT * , SQRT(
     POW(69.1 * (lat - ${lat}), 2) +
