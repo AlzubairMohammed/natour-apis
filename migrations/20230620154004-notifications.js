@@ -4,23 +4,29 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     return Promise.all([
-      queryInterface.addColumn("notifications", "title", {
-        type: Sequelize.STRING,
-        allowNull: true,
-      }),
-      queryInterface.addColumn("notifications", "type", {
-        type: Sequelize.STRING,
-        allowNull: true,
-      }),
-      queryInterface.addColumn("notifications", "body", {
-        type: Sequelize.TEXT,
-        allowNull: true,
-      }),
-      queryInterface.addColumn("notifications", "id", {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
+      queryInterface.createTable("notifications", {
+        id: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+          allowNull: false,
+        },
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        title: {
+          type: Sequelize.STRING,
+          allowNull: true,
+        },
+        type: {
+          type: Sequelize.STRING,
+          allowNull: true,
+        },
+        body: {
+          type: Sequelize.TEXT,
+          allowNull: true,
+        },
       }),
     ]);
   },
