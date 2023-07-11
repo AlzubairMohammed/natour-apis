@@ -11,7 +11,7 @@ module.exports = {
           autoIncrement: true,
           allowNull: false,
         },
-        user_id: {
+        customer_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
@@ -36,6 +36,7 @@ module.exports = {
       queryInterface.removeColumn("notifications", "title"),
       queryInterface.removeColumn("notifications", "type"),
       queryInterface.removeColumn("notifications", "body"),
+      queryInterface.removeColumn("notifications", "user_id"),
       queryInterface.removeColumn("notifications", "id"),
     ]);
   },
