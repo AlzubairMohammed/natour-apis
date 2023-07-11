@@ -3,22 +3,22 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return Promise.all([
-      queryInterface.addColumn("tokens", "token", {
-        type: Sequelize.STRING,
-        allowNull: true,
-      }),
-      queryInterface.addColumn("tokens", "id", {
+    return queryInterface.createTable("tokens", {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
-      }),
-      queryInterface.addColumn("tokens", "user_id", {
+      },
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      }),
-    ]);
+      },
+      token: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+    });
   },
 
   async down(queryInterface, Sequelize) {
