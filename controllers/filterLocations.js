@@ -1,9 +1,6 @@
 const { QueryTypes } = require("sequelize");
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("hultia_core", "root", "noPass123", {
-  host: "localhost",
-  dialect: "mysql",
-});
+const sequelize = require("../config/env");
 
 exports.filterLocations = async (req, res) => {
   console.log(req.body);
