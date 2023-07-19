@@ -16,6 +16,10 @@ Notification.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    customer_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
     type: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -23,6 +27,10 @@ Notification.init(
     body: {
       type: Sequelize.STRING,
       allowNull: false,
+    },
+    created_at: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
     },
   },
   {
