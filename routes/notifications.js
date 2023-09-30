@@ -5,7 +5,6 @@ const {
   getNotifications,
 } = require("../controllers/notifications");
 
-router.post("/", createNotifications);
-router.get("/", getNotifications);
+router.post("/", createNotifications).get("/", getNotifications);
 
 module.exports = router;
