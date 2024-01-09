@@ -6,9 +6,12 @@ const addToken = require("./routes/addToken");
 const filterLocations = require("./routes/filterLocations");
 const installments = require("./routes/installments");
 const httpStatus = require("./utils/httpStatus");
+const multer = require("multer");
+const upload = multer();
 const app = express();
-// app.use(express.static("."));
+app.use(express.static("."));
 app.use(express.json());
+app.use(upload.none());
 
 const cors = require("cors");
 app.use(

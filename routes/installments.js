@@ -16,15 +16,7 @@ const {
 
 router
   .get("/", getInstallments)
-  .post(
-    "/",
-    fileUpload({ createParentPath: true }),
-    filesPayloadExists,
-    fileExtLimiter([".png", ".jpg", ".jpeg"]),
-    fileSizeLimiter,
-    installmentsValidation(),
-    createInstallment
-  )
+  .post("/", createInstallment)
   .get("/:id", getInstallment)
   .put(
     "/:id",

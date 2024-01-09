@@ -7,9 +7,7 @@ const httpStatus = require("../utils/httpStatus");
 const { validationResult } = require("express-validator");
 let fileName;
 exports.getInstallments = asyncWrapper(async (req, res) => {
-  const data = await Installment.findAll({
-    include: ["Images"],
-  });
+  const data = await Installment.findAll();
   return res.json({ status: httpStatus.SUCCESS, data });
 });
 
@@ -33,7 +31,7 @@ exports.getInstallment = asyncWrapper(async (req, res, next) => {
 });
 
 exports.createInstallment = asyncWrapper(async (req, res, next) => {
-  // return res.json(req.body);
+  console.log(req.body);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const error = ErrorResponse.create(errors.array(), 400, httpStatus.FAIL);
