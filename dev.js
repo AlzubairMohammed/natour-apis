@@ -4,6 +4,7 @@ require("dotenv").config();
 const notifications = require("./routes/notifications");
 const addToken = require("./routes/addToken");
 const filterLocations = require("./routes/filterLocations");
+const installments = require("./routes/installments");
 const app = express();
 // app.use(express.static("."));
 app.use(express.json());
@@ -21,6 +22,7 @@ const URL = process.env.URL;
 app.use(`${URL}notification/`, notifications);
 app.use(`${URL}addToken/`, addToken);
 app.use(`${URL}filterLocations/`, filterLocations);
+app.use(`${URL}installments/`, installments);
 
 app.listen(PORT, async () => {
   console.log(`server is running at ${PORT}`);
