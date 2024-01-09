@@ -13,10 +13,10 @@ exports.createNotifications = async (req, res) => {
       index++;
     });
   });
-  //   console.log(tokens);
-  let { title, type, body } = req.body;
+  //   nType = notifications type
+  let { title, type, body, nType } = req.body;
   let error;
-  if (!title || !type || !body) error = "you must fill all fields";
+  if (!title || !type || !body || !nType) error = "you must fill all fields";
   console.log(title && type && body);
   if (!error && tokens) {
     axios
@@ -45,6 +45,7 @@ exports.createNotifications = async (req, res) => {
       title,
       type,
       body,
+      customer_id: -1,
     });
     res.status(200).json({ msg: "Notification created successfully", data });
   }
