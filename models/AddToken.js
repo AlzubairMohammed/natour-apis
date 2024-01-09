@@ -1,33 +1,21 @@
-const sequelize = require("../config/env");
-const Sequelize = require("sequelize");
-
-const Model = Sequelize.Model;
-
-class addToken extends Model {}
-addToken.init(
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
-    },
-    token: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    user_id: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    modelName: "AddToken",
-    freezeTableName: true,
-    tableName: "tokens",
-    timestamps: false,
+"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class AddToken extends Model {
+    static associate(models) {
+      // define association here
+    }
   }
-);
-
-module.exports = addToken;
+  AddToken.init(
+    {
+      token: DataTypes.STRING,
+      user_id: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "AddToken",
+      tableName: "tokens",
+    }
+  );
+  return AddToken;
+};

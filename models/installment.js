@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Installment extends Model {
     static associate(models) {
-      // define association here
+      Installment.hasMany(models.Image, { foreignKey: "installment_id" });
     }
   }
   Installment.init(
@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Installment",
+      timestamps: false,
     }
   );
   return Installment;

@@ -1,5 +1,5 @@
 const { QueryTypes } = require("sequelize");
-const sequelize = require("../config/env");
+const sequelize = require("../config/config.json");
 
 exports.filterLocations = async (req, res) => {
   console.log(req.body);

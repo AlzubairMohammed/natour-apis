@@ -7,11 +7,8 @@ const httpStatus = require("../utils/httpStatus");
 const { validationResult } = require("express-validator");
 let fileName;
 exports.getInstallments = asyncWrapper(async (req, res) => {
-  const data = await Product.findAll({
+  const data = await Installment.findAll({
     include: ["Images"],
-    attributes: {
-      exclude: ["product_id", "user_id"],
-    },
   });
   return res.json({ status: httpStatus.SUCCESS, data });
 });

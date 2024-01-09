@@ -1,67 +1,69 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Installments', {
+    await queryInterface.createTable("Installments", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       phone: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       have_family: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       salary: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       nationality: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       type: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       ads_number: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       gender: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       more_info: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       owner_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       owner_phone: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       expect_rent_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Installments');
-  }
+    await queryInterface.dropTable("Installments");
+  },
 };

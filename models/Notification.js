@@ -1,45 +1,24 @@
-const sequelize = require("../config/env");
-const Sequelize = require("sequelize");
-
-const Model = Sequelize.Model;
-
-class Notification extends Model {}
-Notification.init(
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
-    },
-    title: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    customer_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-    type: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    body: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    created_at: {
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW,
-    },
-  },
-  {
-    sequelize,
-    modelName: "Notification",
-    freezeTableName: true,
-    tableName: "notifications",
-    timestamps: false,
+"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Notification extends Model {
+    static associate(models) {
+      // define association here
+    }
   }
-);
-
-module.exports = Notification;
+  Notification.init(
+    {
+      title: DataTypes.STRING,
+      customer_id: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      body: DataTypes.STRING,
+      created_at: DataTypes.DATE,
+    },
+    {
+      sequelize,
+      modelName: "Notification",
+      tableName: "notifications",
+    }
+  );
+  return Notification;
+};
