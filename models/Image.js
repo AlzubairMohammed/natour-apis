@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
   Image.init(
     {
       image: DataTypes.STRING,
-      installment_id: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -2,9 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Installment extends Model {
-    static associate(models) {
-      Installment.hasMany(models.Image, { foreignKey: "installment_id" });
-    }
+    static associate(models) {}
   }
   Installment.init(
     {

@@ -39,25 +39,8 @@ exports.createInstallment = asyncWrapper(async (req, res, next) => {
     const error = ErrorResponse.create(errors.array(), 400, httpStatus.FAIL);
     return next(error);
   }
-  const { files } = req;
-  let fileName = "";
-  Object.keys(files).forEach((key) => {
-    fileName = Date.now() + files[key].name + "";
-    const filepath = path.join(__dirname, "../uploads", fileName);
-    files[key].mv(filepath, (err) => {
-      if (err) {
-        const error = ErrorResponse.create(err, 500, httpStatus.FAIL);
-        return next(error);
-      }
-    });
-  });
   const data = await Installment.create(req.body);
-  console.log("hi");
-  const imageDate = await Image.create({
-    image: fileName,
-    installment_id: data.id,
-  });
-  if (data && imageDate) {
+  if (data) {
     return res.json({ status: httpStatus.SUCCESS, data });
   }
 });

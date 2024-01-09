@@ -23,7 +23,7 @@ const URL = process.env.URL;
 app.use(`${URL}notification/`, notifications);
 app.use(`${URL}addToken/`, addToken);
 app.use(`${URL}filterLocations/`, filterLocations);
-app.use(`${URL}installments/`, installments);
+app.use(`${URL}userInstallments/`, installments);
 
 // global error handler
 app.use((error, req, res, next) => {
