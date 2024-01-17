@@ -42,7 +42,11 @@ exports.createAppartement = asyncWrapper(async (req, res, next) => {
   if (Array.isArray(images)) {
     images.map(async (image) => {
       fileName = Date.now() + image.name + "";
-      const filepath = path.join(__dirname, "../uploads/products", fileName);
+      const filepath = path.join(
+        __dirname,
+        "../uploads/appartements",
+        fileName
+      );
       image.mv(filepath, (err) => {
         if (err) {
           const error = ErrorResponse.create(err, 500, httpStatus.FAIL);
@@ -61,7 +65,7 @@ exports.createAppartement = asyncWrapper(async (req, res, next) => {
     });
   } else {
     fileName = Date.now() + images.name + "";
-    const filepath = path.join(__dirname, "../uploads/products", fileName);
+    const filepath = path.join(__dirname, "../uploads/appartements", fileName);
     images.mv(filepath, (err) => {
       if (err) {
         const error = ErrorResponse.create(err, 500, httpStatus.FAIL);
