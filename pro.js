@@ -5,13 +5,14 @@ const notifications = require("./routes/notifications");
 const addToken = require("./routes/addToken");
 const filterLocations = require("./routes/filterLocations");
 const installments = require("./routes/installments");
+const appartements = require("./routes/appartements");
 const httpStatus = require("./utils/httpStatus");
 const multer = require("multer");
 const upload = multer();
 const app = express();
 app.use(express.static("."));
 app.use(express.json());
-app.use(upload.none());
+// app.use(upload.none());
 
 const cors = require("cors");
 app.use(
@@ -27,6 +28,7 @@ app.use(`${URL}notification/`, notifications);
 app.use(`${URL}addToken/`, addToken);
 app.use(`${URL}filterLocations/`, filterLocations);
 app.use(`${URL}userInstallments/`, installments);
+app.use(`${URL}appartements/`, appartements);
 
 // global error handler
 app.use((error, req, res, next) => {
