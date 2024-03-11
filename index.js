@@ -6,6 +6,7 @@ const addToken = require("./routes/addToken");
 const filterLocations = require("./routes/filterLocations");
 const installments = require("./routes/installments");
 const appartements = require("./routes/appartements");
+const otp = require("./routes/otp");
 const httpStatus = require("./utils/httpStatus");
 const multer = require("multer");
 const upload = multer();
@@ -29,6 +30,7 @@ app.use(`${URL}addToken/`, addToken);
 app.use(`${URL}filterLocations/`, filterLocations);
 app.use(`${URL}userInstallments/`, installments);
 app.use(`${URL}appartements/`, appartements);
+app.use(`${URL}otp/`, otp);
 
 // global error handler
 app.use((error, req, res, next) => {
